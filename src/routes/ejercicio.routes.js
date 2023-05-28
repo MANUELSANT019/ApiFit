@@ -39,7 +39,7 @@ router.put("/ejercicio/:id", (req,res)=>{ ///Se  define una ruta para manejar un
    });
 //endpoint para Consultar un ejercicio por ID
 router.get("/ejercicio/:id", (req,res)=>{ //Se define la ruta 
-  const{id}=req.params; //Creacion constante
+  const{id}=req.params; //Se crea la constante
   ejercicioSchema.findById(id) //Se utiliza el método "findById()" del modelo "ejercicioSchema" para buscar en la base de datos el documento con el ID especificado
   .then((data)=> res.json(data)) //Exitoso
   .catch((error)=>res.json({message: error}));//Error
