@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 });
 //endpoint para Modificar un ejercicio por ID
 
-router.put("/ejercicio/:id", (req,res)=>{ ///Se  define una ruta para manejar una solicitud PUT HTTP en la ruta /ejercicio/:id
+router.put("/:id", (req,res)=>{ ///Se  define una ruta para manejar una solicitud PUT HTTP en la ruta /ejercicio/:id
   const{id}=req.params; //Creacion constante ID
   const{nombreEjercicio,peso,series,repeticiones}=req.body;
   ejercicioSchema.updateOne({_id:id},{  //Busca el ejercicio por ID y actualizar sus datos

@@ -18,5 +18,9 @@ const ejercicioSchema = new Schema({
     type: Number,
     required: true,
   },
+  fecha: {
+    type: Date,
+    required: true,
+  },
 });
 module.exports = mongoose.model("Ejercicio", ejercicioSchema);
