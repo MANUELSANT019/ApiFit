@@ -27,16 +27,15 @@ router.get("/", async (req, res) => {
 });
 //endpoint para Modificar un ejercicio por ID
 
-router.put("/:id", (req,res)=>{ ///Se  define una ruta para manejar una solicitud PUT HTTP en la ruta /ejercicio/:id
-  const{id}=req.params; //Creacion constante ID
-  const{nombreEjercicio,peso,series,repeticiones}=req.body;
-  ejercicioSchema.updateOne({_id:id},{  //Busca el ejercicio por ID y actualizar sus datos
-    $set: {nombreEjercicio,peso,series,repeticiones} //$set se utiliza para actualizar los campos específicos del documento.
-  }) 
-  .then((data)=> res.json(data)) //Se realiza correctamente
-  .catch((error)=>res.json({message: error}));//Se muestra el error
-  
-   });
+// Endpoint para Modificar un ejercicio por ID
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { nombreEjercicio, peso, series, repeticiones } = req.body;
+  ejercicioSchema
+    .updateOne({ _id: id }, { nombreEjercicio, peso, series, repeticiones })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
 //endpoint para Consultar un ejercicio por ID
 router.get("/ejercicio/:id", (req,res)=>{ //Se define la ruta 
   const{id}=req.params; //Se crea la constante
@@ -44,12 +43,13 @@ router.get("/ejercicio/:id", (req,res)=>{ //Se define la ruta
   .then((data)=> res.json(data)) //Exitoso
   .catch((error)=>res.json({message: error}));//Error
    });
-//endpoint para Eliminar usando el id
-router.delete("/ejercicio/:id", (req,res)=>{ //Ruta
-  const{id}=req.params; //Se defin constante 
-  ejercicioSchema.findByIdAndRemove({_id:id}) //se llama al método "findByIdAndRemove" en el modelo "EjercicioSchema" para eliminar el documento correspondiente en la base de datos. 
-  .then((data)=> res.json(data)) //Exitoso
-  .catch((error)=>res.json({message: error})); //Error
+// Endpoint para Eliminar usando el id
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  ejercicioSchema
+    .findByIdAndRemove(id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
 });
 
 module.exports = router;
